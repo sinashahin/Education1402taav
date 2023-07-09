@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ComplexManagment.Dto.Complexs
+namespace ComplexManagment.DataLayer.Dto.Complexs
 {
     public class AddComplexDto
     {

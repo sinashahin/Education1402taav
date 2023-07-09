@@ -1,6 +1,4 @@
-﻿using System.Reflection.Metadata.Ecma335;
-
-namespace ComplexManagment.Dto.Complexs;
+﻿namespace ComplexManagment.DataLayer.Dto.Complexs;
 
 public class GetComplexByIdWithBlocksDto
 {

@@ -1,4 +1,4 @@
-﻿namespace ComplexManagment.Entities
+﻿namespace ComplexManagment.DataLayer.Entities
 {
     public class Blook
     {

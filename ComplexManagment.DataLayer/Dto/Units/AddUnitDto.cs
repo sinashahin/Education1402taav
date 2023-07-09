@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using ComplexManagment.Entities;
+using ComplexManagment.DataLayer.Entities;
 
-namespace ComplexManagment.Dto.Units;
+namespace ComplexManagment.DataLayer.Dto.Units;
 
 public class AddUnitDto
 {

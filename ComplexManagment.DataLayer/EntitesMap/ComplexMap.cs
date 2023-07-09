@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using ComplexManagment.DataLayer.Entities;
 using Microsoft.EntityFrameworkCore;
-using ComplexManagment.Entities;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ComplexManagment.EntitesMap
+namespace ComplexManagment.DataLayer.EntitesMap
 {
     public class ComplexMap : IEntityTypeConfiguration<Complex>
     {
