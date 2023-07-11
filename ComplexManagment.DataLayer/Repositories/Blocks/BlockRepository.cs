@@ -1,3 +1,4 @@
+using ComplexManagment.DataLayer.Dto.Blocks;
 using ComplexManagment.DataLayer.Entities;
 
 namespace ComplexManagment.DataLayer.Repositories.Blocks;
@@ -11,4 +12,8 @@ public interface BlockRepository
     Blook? FindById(int id);
     bool IsDuplicateNameByComplexId(int id, string name, int complexId);
     void Update(Blook blook);
+    int blockUnitCount(int blockId);   
+    List<GetAllBlooksDto> GetAllBlooks();
+    bool IsExistsByBlockId(int blockId);
+    GetOneBlookDto GetOneBlookById(int blockId);
 }

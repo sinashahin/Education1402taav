@@ -6,6 +6,7 @@
         public string Name{ get; set; }
         public int BlookId { get; set; }
         public UnitType Resident { get; set; }
+        public Blook Blook { get; set; }
     }
     public enum UnitType
     {

@@ -10,4 +10,7 @@ public interface ComplexRepository
     List<GetAllComplexDto> GetAll(string? searchName);
     bool IsExistsById(int id);
     int GetUnitCountById(int id);
+    List<GetAllUsageTypeByComplexId> GetAllUsageTypeByComplexId(int id);
+    GetOneComplexDto GetOneComplexDto(int complexId);
+    List<GetAllComplexWithBlookDto> GetAllComplexWithBlooks();
 }

@@ -1,3 +1,4 @@
+using ComplexManagment.DataLayer.Dto.Blocks;
 using ComplexManagment.DataLayer.Entities;
 
 namespace ComplexManagment.DataLayer.Repositories.Blocks;
@@ -5,10 +6,12 @@ namespace ComplexManagment.DataLayer.Repositories.Blocks;
 public class EFBlockRepository : BlockRepository
 {
     private readonly EFDataContext _context;
+    private readonly UnitOfWork _unitOfWork;
 
-    public EFBlockRepository(EFDataContext context)
+    public EFBlockRepository(EFDataContext context,UnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
     
     public bool IsDuplicateNameByComplexId(string name,int complexId)
@@ -40,7 +43,7 @@ public class EFBlockRepository : BlockRepository
     public void Add(Blook blook)
     {
         _context.Blooks.Add(blook);
-        _context.SaveChanges();
+        _unitOfWork.Complete();
     }
 
     public Blook? FindById(int id)
@@ -63,6 +66,47 @@ public class EFBlockRepository : BlockRepository
     public void Update(Blook blook)
     {
         _context.Blooks.Update(blook);
-        _context.SaveChanges();
+        _unitOfWork?.Complete();
+    }
+    public int blockUnitCount(int blockId)
+    {
+        return _context.Blooks
+            .Where(_ => _.Id == blockId)
+            .Select(_ => _.UnitCount)
+            .FirstOrDefault();
+    }
+
+    public List<GetAllBlooksDto> GetAllBlooks()
+    {
+        var resualt = _context.Blooks
+            .Select(_ => new GetAllBlooksDto
+            {
+                Id=_.Id,
+                Name = _.Name,
+                UnitCount = _.UnitCount,
+                BlooksCount = _.Units.Count(),
+                RemainBlook = _.UnitCount - _.Units.Count()
+            }).ToList();
+        return resualt;
+    }
+    public bool IsExistsByBlockId(int blockId)
+    {
+        return _context.Blooks.Any(_ => _.Id == blockId);
+    }
+
+    public GetOneBlookDto GetOneBlookById(int blockId)
+    {
+        return
+            _context.Blooks.Where(_ => _.Id == blockId)
+            .Select(_=> new GetOneBlookDto
+            {
+                Id= _.Id,
+                Name= _.Name,
+                GetUnitDtos=_.Units.Select(unit=> new GetUnitDto
+                {
+                    Name=unit.Name,
+                    ResidenceName=unit.Resident,
+                }).ToList()
+            }).FirstOrDefault();
     }
 }

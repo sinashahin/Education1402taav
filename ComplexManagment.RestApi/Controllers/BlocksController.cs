@@ -6,6 +6,7 @@ using ComplexManagment.DataLayer.Repositories.Complexs;
 using ComplexManagment.DataLayer.Repositories.Units;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace ComplexManagment.Controllers;
 
 [Route("blocks")]
@@ -78,7 +79,7 @@ public class BlocksController : Controller
             throw new Exception("name duplicate");
         }
     
-        var isExistUnit = _unitRepository.IsExistsByBlockId(block.Id);
+        var isExistUnit =_blockRepository.IsExistsByBlockId(block.Id);
     
         if (!isExistUnit)
         {
@@ -98,6 +99,17 @@ public class BlocksController : Controller
         block.Name = dto.Name;
     
         _blockRepository.Update(block);
+    }
+    [HttpGet]
+    public List<GetAllBlooksDto> GetAllBlooks()
+    {
+        return _blockRepository.GetAllBlooks();
+    }
+    
+    [HttpGet("{id}/unit")]
+    public GetOneBlookDto GetOneBlook([FromRoute]int id)
+    {
+        return _blockRepository.GetOneBlookById(id);
     }
     //
     // private void CheckComplexUnitCount(int dtoUnitCount,int complexId)

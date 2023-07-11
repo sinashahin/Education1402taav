@@ -2,6 +2,9 @@ using ComplexManagment;
 using ComplexManagment.DataLayer;
 using ComplexManagment.DataLayer.Repositories.Blocks;
 using ComplexManagment.DataLayer.Repositories.Complexs;
+using ComplexManagment.DataLayer.Repositories.ComplexUsageTypes;
+using ComplexManagment.DataLayer.Repositories.Units;
+using ComplexManagment.DataLayer.Repositories.UsageTypes;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +19,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ComplexRepository, EFComplexRepository>();
 builder.Services.AddScoped<BlockRepository, EFBlockRepository>();
+builder.Services.AddScoped<UnitRepository, EFUnitRepository>();
+builder.Services.AddScoped<UsageTypeRepository, EFUsageTypeRepository>();
+builder.Services.AddScoped<ComplexUsageTypeRepository, EFComplexUsageTypeRepository>();
+builder.Services.AddScoped<UnitOfWork, EFUnitOfWork>();
 builder.Services.AddDbContext<EFDataContext>(options =>
 {
     options.UseSqlServer(config.GetConnectionString("SqlServer"));

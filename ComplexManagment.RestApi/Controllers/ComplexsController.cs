@@ -27,14 +27,35 @@ namespace ComplexManagment.Controllers
             
             _complexRepository.Add(complex);
         }
-
+        
         [HttpGet]
         public List<GetAllComplexDto> GetAll([FromQuery]string? name)
         {
             return _complexRepository.GetAll(name);
         }
-        
-        
+        [Route("{id}/usage-type")]
+        [HttpGet]
+        public List<GetAllUsageTypeByComplexId> GetAllUsageTypes([FromRoute] int id)
+        {
+            return _complexRepository.GetAllUsageTypeByComplexId(id);
+        }
+        [Route("{id}")]
+        [HttpGet]
+        public GetOneComplexDto GetOneComplexDto([FromRoute]int id)
+        {
+            return _complexRepository.GetOneComplexDto(id);
+        }
+        [Route("block")]
+        [HttpGet]
+        public List<GetAllComplexWithBlookDto> GetAllComplexWithBlooks()
+        {
+            return _complexRepository.GetAllComplexWithBlooks();
+        }
+
+        //[Route("{}")]
+        //[HttpGet]
+
+
         // private readonly EFDataContext _context;
         //
         // public ComplexsController(EFDataContext context)
